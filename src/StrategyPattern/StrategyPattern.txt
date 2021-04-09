@@ -1,0 +1,25 @@
+A localised update to the code caused a non local side effect (flying rubber ducks)
+Use of Inheritance for code reuse does not always turn out so well when it comes to maintenance
+Not all subclasses should have flying or quack behavior, so inheritance is not the answer.
+Also creating interface flyable and quackable will not help because of code reuse as java inteface does not allow implementation code.
+Also it will be difficult if there might be more than one kind of flying behavior.
+So if u want to change behavior u have to do in all of the subclasses
+
+One Constant in software development : CHANGE
+Identify the aspects of your application that vary and separate them from what stays the same
+Take the parts that vary and encapsulate them, so that later you can alter or extend the parts that vary without affecting those that dont
+
+Duck class is still the superclass but we will pull out the behavior that varies (fly,quack)
+To change the behavior dynamically we will program to interface to make things flexible
+
+Program to an interface(supertype), not an implementation
+
+Composition (HAS A) : Each duck has a flybehavior and quackbehavior to which it delegates flying, quacking
+
+Favor composition over inheritance
+
+We spend more time on code after development is complete, so effort should go into maintainability and extensibilty instead of reuse
+Inheritance will reduce development time, but offers very less flexibility
+
+Strategy pattern defines set of algorithms, encapsulates each one, and make them interchangeable
+Strategy lets the algorithm vary independently from client that use it
