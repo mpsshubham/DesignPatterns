@@ -1,7 +1,7 @@
 A localised update to the code caused a non local side effect (flying rubber ducks)
 Use of Inheritance for code reuse does not always turn out so well when it comes to maintenance
-Not all subclasses should have flying or quack behavior, so inheritance is not the answer.
-Also creating interface flyable and quackable will not help because of code reuse as java inteface does not allow implementation code.
+Not all subclasses should have flying or quack behavior, so inheritance is not the answer. For every new duck subclass we have to override fly, quack methods
+Also creating interface (Rubber duck extends Duck implements quackable, flyable) flyable and quackable will not help because of code reuse as java inteface does not allow implementation code.
 Also it will be difficult if there might be more than one kind of flying behavior.
 So if u want to change behavior u have to do in all of the subclasses
 

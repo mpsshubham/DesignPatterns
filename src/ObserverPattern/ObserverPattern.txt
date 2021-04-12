@@ -1,0 +1,43 @@
+Most heavily used pattern in JDK.
+It keeps your objects in the know when something they might care about happens.
+Object can decide at runtime whether they want to be kept informed.
+
+So we have weather data (temp, pressure, and humidity) as subject for which lot of observers (TvDisplay, InternetDisplay) are interested
+
+First attempt is to have all display.update method in measurementChanged() method.
+But in this we are coding to concrete implementation, not easily expandable
+internet.display, tv.display is area of change and we should encapsulate it
+
+Observer Pattern provides an object design where subjects and observers are loosely coupled
+1) The only thing that subject knows about an observer is that it implements a certain interface
+2) We can add new observers at any time
+3) We never need to modify subject to add new observers
+4) We can reuse subjects or observers independently of each other
+5) Changes to either subject or an observer will not affect each other
+
+Observer also has to do other work than just listening to subject's notification, so it may be needed
+that subject does not push its state, rather let observer come to subject for state
+Also if someone needs only some state(only temp) than observer can pull only that state, but the disadvantage is 
+that observers will have to make multiple calls
+
+Push v/s Pull
+
+InBuilt Java Observer Pattern :
+First subject will extend Observable class and inherit methods like add, delete, notify
+Then observers will implement Observer interface and call addObserver on any Observable object
+
+For the subject to send notifications, first we have to call setChanged() method and then call
+notifyObservers()(Pull) or notifyObservers(Object arg)(Push)
+
+SetChanged Method is necessary. if we call notify without this method, observer will not be notified.
+SetChanged method can be used to optimize notifications (if minute change in state, don't notify)
+
+For Observers to receive notifications, Observer have to implement update(Observable o, Object arg) method
+Using inbuilt method we are not sure of the order of execution of observers
+
+Disadvantages of inbuilt method : 
+Observable is a class, so no other class can be extended.
+Also Observable setChanged method is protected, so anyway we have to subclass it. you cannot create object of
+Observable and compose it with your own object.
+
+This pattern is also used in Swing JButton, JFrame action listeners
