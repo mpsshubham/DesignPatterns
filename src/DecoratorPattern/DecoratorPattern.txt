@@ -1,0 +1,38 @@
+Subclassing is not needed everytime, extension at runtime is very powerfull instead of compile time
+
+Decorating your classes at runtime using object composition and give new responsibilities to objects
+without making any code changes to underlying classes.
+
+So we have a class beverage with subclasses (espresso, houseblend). We also have condiment options(topping) 
+So to have all this first attempt might be to create espresso with all toppings....
+But this will be class explosion, thousand of classes, no design principle studied so far is followed.
+If we have to change cost of milk, then we have to change thousand of classes
+
+Second approach is to have instance variable of condiments in base class (hasMocha, hasWhip) and add cost of condiment in base class
+Subclasses will call base class cost method to add cost of condiment 
+Problem : Price change in condiment will force to alter existing code
+new condiment will force to add new method and alter cost method in base class
+simple beverage without condiment will still inherit hasWhip, hasMocha unnecessarily
+
+When we inherit by subclassing, the behavior is set statically at compile time. In addition, all subclasses
+must inherit the same behavior
+By dynamically composing objects we can add new functionalities by writing new code rather than altering existing code
+
+Class should be open for extension and closed for modifications
+like in observer pattern, by adding new observers we can extend subject at anytime without adding code to subject
+
+So with inheritance we get class explosion, rigid design and we add functionality to the base class that is not 
+appropriate for some subclasses
+
+So now we will start with beverage and decorate it with condiment at runtime and delegate cost from outermost condiments to beverage
+
+Decorators have same supertype as the objects they decorate (beverage), so we can pass around a decorated object in place of original object
+We can use one or more decorator to wrap an object
+Decorator add its own behavior either before and/or after delegating it to the object it decorates
+Objects can be decorated anytime, even dynamically at runtime
+
+Real World Decorator
+Java IO Package has large number of classes and is widely based on Decorator Pattern
+FileInputStream, StringBufferInputStream, ByteArrayInputStream are components that are decorated (base components)
+BufferInputStream, LineNumberInputStream are concrete decorator
+See the diagram from head first

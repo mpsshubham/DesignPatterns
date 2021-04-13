@@ -14,6 +14,8 @@ Favor composition over inheritance
 
 Strive for loosely coupled designs between objects that interact
 
+Classes should be open for extension but closed for modification
+
 ===========================================================================================================
 OO Pattern
 
@@ -22,3 +24,6 @@ Strategy lets the algorithm vary independently from client that use it
 
 Observer Pattern defines a one to many dependency between objects so that when one object changes state,
 all of its dependents are notified and updated automatically
+
+Decorator Pattern attach additional responsibilities to an object dynamically. Decorator provide a flexible 
+alternative to subclassing for extending functionality
